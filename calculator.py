@@ -6,6 +6,7 @@ def add(numbers: str) -> int:
         return 0
 
     delimiter = ','
+    numbers = numbers.replace('\n', delimiter)
     arr = (int(n) for n in numbers.split(delimiter))
     return sum(arr)
 
@@ -25,6 +26,11 @@ class TestStringMethods(unittest.TestCase):
     def test_multiple_numbers(self):
         rand = [randrange(100) for _ in range(randint(3, 50))]
         numbers = ','.join((str(r) for r in rand))
+        self.assertEqual(add(numbers), sum(rand))
+
+    def test_new_line_delimiter(self):
+        rand = [randrange(100) for _ in range(randint(3, 50))]
+        numbers = '\n'.join((str(r) for r in rand))
         self.assertEqual(add(numbers), sum(rand))
 
 if __name__ == '__main__':
