@@ -1,4 +1,4 @@
-from random import randrange
+from random import randint, randrange
 import unittest
 
 def add(numbers: str) -> int:
@@ -19,6 +19,11 @@ class TestStringMethods(unittest.TestCase):
 
     def test_two_numbers(self):
         rand = [randrange(100) for _ in range(2)]
+        numbers = ','.join((str(r) for r in rand))
+        self.assertEqual(add(numbers), sum(rand))
+
+    def test_multiple_numbers(self):
+        rand = [randrange(100) for _ in range(randint(3, 50))]
         numbers = ','.join((str(r) for r in rand))
         self.assertEqual(add(numbers), sum(rand))
 
